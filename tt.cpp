@@ -72,7 +72,6 @@ string gameend(vector<vector<string>> b){
 
 //minmax algo 
 int minmaxalgo(vector<vector<string>> board, string c,string ai){
-    int returnval = 0;
     if(gameend(board)!="."){
         if(gameend(board) == ai){
             return 1;
@@ -84,16 +83,35 @@ int minmaxalgo(vector<vector<string>> board, string c,string ai){
             return -1;
         }
     }
-    for(int i = 0; i < 3; i++){
-        for(int j = 0; j < 3; j++){
-            if(board[i][j] == "."){
-                board[i][j] = c; 
-                returnval += minmaxalgo(board, (c=="x")?"o":"x",ai);
-                board[i][j] = ".";
+    int temp;
+    if(c == ai){
+        int best = INT_MIN;
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(board[i][j] == "."){
+                    board[i][j] = c; 
+                    temp = minmaxalgo(board, (c=="x")?"o":"x",ai);
+                    if(temp > best)best = temp;
+                    board[i][j] = ".";
+                }
             }
         }
+        return best;
     }
-    return returnval;
+    else{ 
+        int best = INT_MAX;
+        for(int i = 0; i < 3; i++){
+            for(int j = 0; j < 3; j++){
+                if(board[i][j] == "."){
+                    board[i][j] = c; 
+                    temp = minmaxalgo(board, (c=="x")?"o":"x",ai);
+                    if(temp < best)best = temp;
+                    board[i][j] = ".";
+                }
+            }
+        }
+        return best;
+    }
 }
 int bestmove(vector<vector<string>> board,string c){
     int mi = 0;
@@ -125,7 +143,7 @@ int main()
     //cout<< gameend(checkboard)<<endl;
 
     int input;
-    bool turns=0;
+    bool turns=1;
     while(gameend(board) == "."){
         if(turns){
             cin>>input;
