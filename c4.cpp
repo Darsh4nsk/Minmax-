@@ -31,9 +31,13 @@ class Connect{
         }
         string GameEnd(){ 
             string temp;
+            bool draw = false;
             for(int i= 0; i< 6 ;i++){
                 for(int j =0;j<7;j++){
-                    if(board[i][j] != "."){
+                    if(board[i][j] == "."){
+                        draw = false;
+                    }
+                    else if(board[i][j] != "."){
                         temp = board[i][j];
                         
                     }
