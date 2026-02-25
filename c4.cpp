@@ -31,16 +31,48 @@ class Connect{
         }
         string GameEnd(){ 
             string temp;
-            bool draw = false;
-            for(int i= 0; i< 6 ;i++){
-                for(int j =0;j<7;j++){
-                    if(board[i][j] == "."){
-                        draw = false;
-                    }
-                    else if(board[i][j] != "."){
-                        temp = board[i][j];
+            bool draw = true;
+            int con;
+            for(int i= 0; i< 7 ;i++){
+                for(int j =0;j<6;j++){
+                    if(board[j][i] != "."){
+                        temp = board[j][i];
+                        int tempj = j,tempi = i; 
+                        con = 0;
+                        while(board[++tempj][++tempi] == temp){
+                            con++; 
+                        }
+                        if(con >=4){
+                            return temp;
+                        }
+                        
+                        tempj = j,tempi = i; 
+                        con = 0;
+                        while(board[--tempj][++tempi] == temp){
+                            con++; 
+                        }
+                        if(con>=4){ 
+                            return temp;
+                        }
+                        tempj = j,tempi = i; 
+                        con = 0;
+                        while(board[tempj][++tempi]== temp){
+                            con++;
+                        }if(con>=4)return temp; 
+                        
+                        tempj = j,tempi = i; 
+                        con = 0;
+                        while(board[++tempj][tempi]==temp)con++;
+                        if(con>=4)return temp; 
+                        
+                        tempj = j,tempi = i; 
+                        con = 0;
+                        while(board[--tempj][tempi]==temp)con++;
+                        if(con>=4)return temp; 
+                        
                         
                     }
+                    else{draw = false;}
                 }
             }
         }
