@@ -98,7 +98,7 @@ class Connect{
         int MinMax(string current,string ai){ 
             if(GameEnd() == ai)return 1;
             else if(GameEnd() == "d") return 0; 
-            else return -1; 
+            else if(GameEnd() != ".") return -1; 
 
             if(current == ai){
                 int best = INT_MIN;   
