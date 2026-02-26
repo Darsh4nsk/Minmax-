@@ -3,6 +3,8 @@
 #include <map>
 using namespace std;
 #include <unordered_map>
+#include <climits>
+
 void printboard(vector<vector<string>> b){
     for (int i = 0; i < 3; i++){
         for (int j = 0; j < 3; j++){
