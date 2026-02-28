@@ -47,7 +47,6 @@ class Connect{
             for(int r = 0; r < N; r++){
                 for(int c = 0; c < N+1; c++){
 
-                    // horizontal window
                     if(c+3 < N+1){
                         int aiCount = 0, oppCount = 0, empty = 0;
 
@@ -88,28 +87,24 @@ class Connect{
 
                     string player = board[r][c];
 
-                    // ---- Horizontal ----
                     if (c + 3 < N+1 &&
                         board[r][c+1] == player &&
                         board[r][c+2] == player &&
                         board[r][c+3] == player)
                         return player;
 
-                    // ---- Vertical ----
                     if (r + 3 < N &&
                         board[r+1][c] == player &&
                         board[r+2][c] == player &&
                         board[r+3][c] == player)
                         return player;
 
-                    // ---- Diagonal Down-Right ----
                     if (r + 3 < N && c + 3 < N+1 &&
                         board[r+1][c+1] == player &&
                         board[r+2][c+2] == player &&
                         board[r+3][c+3] == player)
                         return player;
 
-                    // ---- Diagonal Down-Left ----
                     if (r + 3 < N && c - 3 >= 0 &&
                         board[r+1][c-1] == player &&
                         board[r+2][c-2] == player &&
@@ -118,8 +113,8 @@ class Connect{
                 }
             }
 
-            if (draw) return "d";   // draw
-            return ".";              // game continues
+            if (draw) return "d";  
+            return ".";            
         }
 
         int BestMove(string current,string ai){
